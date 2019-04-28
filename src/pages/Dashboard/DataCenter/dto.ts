@@ -1,0 +1,3 @@
+interface ICommon {
+  name: string;
+}
