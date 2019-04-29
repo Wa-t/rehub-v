@@ -2,9 +2,9 @@ import { Dashboard } from './Dashboard';
 
 export default [
   {
-    path: "dashboard",
+    path: 'home',
     Component: Dashboard,
-    icon: "appstore",
-    name: "Dashboard"
+    icon: 'appstore',
+    name: 'Dashboard'
   }
 ];

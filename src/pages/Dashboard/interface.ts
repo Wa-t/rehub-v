@@ -5,8 +5,7 @@ interface ICommon {
 }
 
 export interface IProps extends KosProps, ICommon {
-  routers: any;
-  loginLoading: boolean;
+  options?: any;
 }
 
 export interface IInit extends ICommon {

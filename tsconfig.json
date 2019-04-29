@@ -20,9 +20,7 @@
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "paths": {
-      "src-root/*": ["./src/*"],
-      "auto-wrapper": ["./src/components/AutoWrapper.tsx"],
-      "src_components/*": ["./src/components/*"]
+      "@/*": ["./src/*"]
     }
   },
   "exclude": [

@@ -1,7 +1,7 @@
+import { Field, Form } from "@/components/kos-form-antd";
 import { Button, Input, Row } from "antd";
 import KOS, { KosProps } from "kos-core";
 import * as React from "react";
-import { Field, Form } from "src_components/kos-form-antd";
 import "./login.less";
 import model from "./model";
 

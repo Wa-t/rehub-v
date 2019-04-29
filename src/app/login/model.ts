@@ -1,6 +1,7 @@
+import { login } from "@/app/login/services";
 import { message } from "antd";
 import { KosModel as IModel } from "kos-core";
-import { login } from "src-root/app/login/services";
+
 
 export interface IInitial {
   isLogin: boolean;

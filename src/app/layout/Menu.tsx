@@ -1,8 +1,9 @@
+import { siderMenus } from '@/common/utils/Menus';
 import { Icon, Menu } from 'antd';
 import * as loadsh from 'lodash';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { siderMenus } from 'src-root/common/utils/Menus';
+
 
 const { Item, SubMenu } = Menu;
 interface IMenu {

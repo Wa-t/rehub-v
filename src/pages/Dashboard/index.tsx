@@ -1,18 +1,29 @@
+import { AutoWrapper } from '@/components';
+import ReactEcharts from 'echarts-for-react';
 import * as React from 'react';
-import { AutoWrapper, Loader } from 'src-root/components';
-
 import { IProps } from './interface';
 import model from './model';
-import router from './router';
 
-@AutoWrapper({ KOSconfig: { model }, router })
+
+
+@AutoWrapper({ KOSconfig: { model }})
 export class Dashboard extends React.Component<IProps> {
+  public options = {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+    }]
+  }
   public render() {
     return (
-      <div>
-        <div>{this.props.routers}</div>
-        <Loader spinning={this.props.loginLoading} fullScreen={false} />
-      </div>
+      <ReactEcharts option={this.options} />
     );
   }
 }

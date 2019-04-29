@@ -1,6 +1,5 @@
+import { AutoWrapper } from '@/components';
 import * as React from 'react';
-import { AutoWrapper } from 'src-root/components';
-
 import router from './router';
 
 @AutoWrapper({ router })
