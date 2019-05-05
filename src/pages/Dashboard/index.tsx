@@ -21,9 +21,13 @@ export class Dashboard extends React.Component<IProps> {
         type: 'line'
     }]
   }
+
   public render() {
     return (
-      <ReactEcharts option={this.options} />
+      <div>
+        <ReactEcharts option={this.options} />
+        {JSON.stringify(this.props.userData)}
+      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 # 技术栈
 * [React](https://www.reactjs.org/)
 * [KOS](https://github.com/ali-kos/kos)
-* [Graphql](https://graphql.org/learn/)
+* ~~[Graphql](https://graphql.org/learn/)(第二版实现)~~
 * [ECharts](https://www.echartsjs.com/index.html)
 * [echarts-for-react](https://www.npmjs.com/package/echarts-for-react)
 

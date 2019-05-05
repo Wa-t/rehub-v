@@ -1,7 +1,7 @@
 import { KosProps } from 'kos-core';
 
 interface ICommon {
-  name: string;
+  userData: object;
 }
 
 export interface IProps extends KosProps, ICommon {
