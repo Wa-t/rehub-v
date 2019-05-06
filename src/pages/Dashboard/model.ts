@@ -32,7 +32,7 @@ class Model implements IModel<IInit> {
     getState: () => { userData: object }
   ) => {
     dispatch({
-      type: "queryUser"
+      // type: "queryUser"
     });
   };
 }

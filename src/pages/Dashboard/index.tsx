@@ -23,6 +23,8 @@ export class Dashboard extends React.Component<IProps> {
   }
 
   public render() {
+    // const { userData } = window.store.getState().system;
+    // console.log(userData)
     return (
       <div>
         <ReactEcharts option={this.options} />

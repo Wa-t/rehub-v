@@ -115,6 +115,15 @@
       }
     }
   },
+  "proxy": {
+    "/api": {
+      "target": "https://api.github.com",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "api": ""
+      }
+    }
+  },
   "babel": {
     "presets": [
       "react-app"

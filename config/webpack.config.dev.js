@@ -28,8 +28,7 @@ const env = getClientEnvironment(publicUrl);
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
-console.log("path.resolve => ", path.resolve("./src/components/AutoWrapper.tsx"));
-console.log("path.resolve src-root => ", path.resolve("./src"));
+console.log("path.resolve @ => ", path.resolve("./src"));
 module.exports = {
   // You may want 'eval' instead if you prefer to see the compiled output in DevTools.
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
@@ -90,9 +89,7 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      "react-native": "react-native-web",
-      "auto-wrapper": path.resolve("./src/components/AutoWrapper.tsx"),
-      "src-root": path.resolve("./src")
+      "@": path.resolve("./src")
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

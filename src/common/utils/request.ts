@@ -37,8 +37,5 @@ export default async function request(
     };
   }
   const data = await response.json();
-  if (data.code !== "200" && data.code !== "46") {
-    message.error(data.msg);
-  }
   return data;
 }

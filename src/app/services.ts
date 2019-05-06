@@ -1,9 +1,7 @@
-export function checkLogin(): Promise<{code:string}> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        code: '200',
-      });
-    }, 2000);
+import request from "@/common/utils/request";
+
+export async function inquireUser() {
+  return request('api/users/wstreet', {
+    method: 'get',
   });
 }

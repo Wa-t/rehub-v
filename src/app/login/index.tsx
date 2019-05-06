@@ -1,54 +1,47 @@
-import { Field, Form } from "@/components/kos-form-antd";
-import { Button, Input, Row } from "antd";
+import { Button, Form, Input, message, Row } from "antd";
 import KOS, { KosProps } from "kos-core";
 import * as React from "react";
 import "./login.less";
 import model from "./model";
 
 interface IProps extends KosProps {
-  mess: "string";
+  username: "string";
 }
 
 @KOS.Wrapper({ model })
 class Login extends React.PureComponent<IProps> {
-  public handleSubmit() {
-    const { dispatch } = this.props;
-    const { getNamespace } = this.props;
-    Form.validate(getNamespace!(), "loginForm", (result: object) => {
-      if (result) {
-        dispatch!({
-          type: "login"
-        });
-      }
-    });
-  }
-  public submitForm = () => {
+  public handleChange = (e: any) => {
     const { dispatch } = this.props;
     dispatch!({
-      type: "login"
+      type: 'setState',
+      payload: {
+        username: e.target.value,
+      },
     });
-  };
+  }
+  public handleSubmit = (): boolean | void => {
+    const { dispatch, username } = this.props;
+    if (!username) {
+      message.warning('请输入账户名称');
+      return false;
+    }
+    dispatch!({
+      type: 'queryUser',
+      payload: {
+        username,
+      },
+    });
+  }
   public render() {
+    console.log(this.props)
     return (
       <div className="form">
-        <div className="logo">
-          <span className="imgs" />
-          <span>登 录</span>
-        </div>
-        <Form name="loginForm" onSubmit={() => this.submitForm()}>
-          <Field label="用户名：" field="username">
-            <Input placeholder="用户名" />
-          </Field>
-          <Field label="密码：" field="password">
-            <Input type="password" placeholder="密码" />
-          </Field>
+        <Form name="loginForm">
+          <Input placeholder="用户名" onChange={this.handleChange} />
           <Row>
-            <Button htmlType="submit" type="primary" onClick={() => this.handleSubmit()}>
-              登录
+            <Button type="primary" onClick={this.handleSubmit}>
+              生成
             </Button>
-            <p>
-              <span>kos-admin</span>
-            </p>
           </Row>
         </Form>
       </div>
