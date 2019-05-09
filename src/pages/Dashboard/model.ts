@@ -1,12 +1,13 @@
 import { GetKosState, KosDispatch, KosModel as IModel } from 'kos-core';
 
 import { IInit } from './interface';
-import { inquireUser } from './services';
+import { inquireRepos } from './services';
 
 class Model implements IModel<IInit> {
   public namespace: string = 'dashboard';
   public initial: any = {
-    userData: {}
+    userData: {},
+    repoList: []
   };
   public reducers: any = {
     updateState(state: IInit, { payload }: { payload: IInit }) {
@@ -17,14 +18,16 @@ class Model implements IModel<IInit> {
     }
   };
   public asyncs: any = {
-    async queryUser(dispatch: KosDispatch, getState?: GetKosState<IInit>) {
-      const res = await inquireUser();
-      dispatch({
-        type: 'updateState',
-        payload: {
-          userData: res,
-        }
-      })
+    async queryRepos(dispatch: KosDispatch, getState?: GetKosState<IInit>) {
+      const { code, data } = await inquireRepos();
+      if (code === 200) {
+        dispatch({
+          type: 'updateState',
+          payload: {
+            repoList: data,
+          }
+        })
+      }
     }
   };
   public setup = (
@@ -32,7 +35,7 @@ class Model implements IModel<IInit> {
     getState: () => { userData: object }
   ) => {
     dispatch({
-      // type: "queryUser"
+      type: "queryRepos"
     });
   };
 }

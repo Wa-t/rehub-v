@@ -1,3 +1,4 @@
+import { getSession } from '@/common/utils'
 import { Loader } from '@/components/Loader';
 import KOS, { KosProps } from 'kos-core';
 import * as React from 'react';
@@ -7,10 +8,10 @@ import './index.less';
 import model from './model';
 
 
+
 interface IM {
   path: string;
   Component: string;
-  icon: string;
   name?: string;
   mpid: string;
   route: string;
@@ -31,7 +32,8 @@ interface IProps extends KosProps<II> {
 @KOS.Wrapper({ model, autoReset: false })
 export class App extends React.PureComponent<IProps> {
   public render() {
-    const { location, isLogin } = this.props;
+    const { location } = this.props;
+    const isLogin = getSession('isLogin');
     /*
       对从menus文件引入的对象 进行处理
       将占位符部分都去掉

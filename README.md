@@ -6,7 +6,11 @@
 * [echarts-for-react](https://www.npmjs.com/package/echarts-for-react)
 
 # API
-* [GraphQL API v4](https://developer.github.com/v4/)
+* ~~[GraphQL API v4](https://developer.github.com/v4/)~~
+* [REST API v3](https://developer.github.com/v3/)
+### 接口列表
+* 用户信息：https://api.github.com/users/${username}
+* Repositories List：https://api.github.com/users/${username}/repos
 
 
 # 参考项目

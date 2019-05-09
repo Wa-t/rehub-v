@@ -37,5 +37,8 @@ export default async function request(
     };
   }
   const data = await response.json();
-  return data;
+  return {
+    code: 200,
+    data,
+  };
 }

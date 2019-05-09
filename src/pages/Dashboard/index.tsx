@@ -11,7 +11,7 @@ export class Dashboard extends React.Component<IProps> {
   public options = {
     xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: this.props.repoList.map((repo: any) => repo.name)
     },
     yAxis: {
         type: 'value'
@@ -23,8 +23,9 @@ export class Dashboard extends React.Component<IProps> {
   }
 
   public render() {
-    // const { userData } = window.store.getState().system;
-    // console.log(userData)
+
+
+
     return (
       <div>
         <ReactEcharts option={this.options} />

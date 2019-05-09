@@ -33,7 +33,6 @@ class Login extends React.PureComponent<IProps> {
     });
   }
   public render() {
-    console.log(this.props)
     return (
       <div className="form">
         <Form name="loginForm">

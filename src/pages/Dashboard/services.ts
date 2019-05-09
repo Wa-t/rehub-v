@@ -1,7 +1,7 @@
 import request from "@/common/utils/request";
 
-export async function inquireUser() {
-  return request('https://api.github.com/users/wstreet', {
+export async function inquireRepos() {
+  return request('/api/users/wstreet/repos', {
     method: 'get',
   });
 }

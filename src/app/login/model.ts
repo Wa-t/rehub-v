@@ -1,5 +1,9 @@
 import { inquireUser } from "@/app/login/services";
+import { saveSession } from '@/common/utils'
+import history from '@/common/utils/history';
 import { KosModel as IModel } from "kos-core";
+
+
 
 
 export interface IInitial {
@@ -16,13 +20,19 @@ class Login implements IModel<IInitial> {
   public asyncs = {
     async queryUser(dispatch: (action: any) => void, getState?: () => IInitial, action?: any) {
       const { payload } = action;
-      const res = await inquireUser(payload);
-      dispatch!({
-        type: 'system/setState',
-        payload: {
-          userData: res,
-        }
-      });
+      const { code, data } = await inquireUser(payload);
+      if (code === 200) {
+        dispatch!({
+          type: 'system/setState',
+          payload: {
+            userData: data,
+          }
+        });
+        saveSession('isLogin', true)
+        setTimeout(() => {
+          history.push('/dashboard')
+        }, 1000)
+      }
     }
   };
   public setup = (

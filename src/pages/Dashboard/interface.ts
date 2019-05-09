@@ -2,6 +2,7 @@ import { KosProps } from 'kos-core';
 
 interface ICommon {
   userData: object;
+  repoList: any;
 }
 
 export interface IProps extends KosProps, ICommon {
