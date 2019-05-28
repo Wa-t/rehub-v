@@ -1,4 +1,5 @@
 import { AutoWrapper } from '@/components';
+import * as Skins from '@/components/Skins';
 import ReactEcharts from 'echarts-for-react';
 import * as React from 'react';
 import { IProps } from './interface';
@@ -24,12 +25,25 @@ export class Dashboard extends React.Component<IProps> {
 
   public render() {
 
-
+    const Box = Skins.Default.Box;
 
     return (
       <div>
-        <ReactEcharts option={this.options} />
-        {JSON.stringify(this.props.userData)}
+        <Box title="这是个标题1">
+          <ReactEcharts option={this.options} />
+        </Box>
+        <Box title="这是个标题2">
+          <ReactEcharts option={this.options} />
+        </Box>
+        <Box title="这是个标题3">
+          <ReactEcharts option={this.options} />
+        </Box>
+        <Box title="这是个标题4">
+          <ReactEcharts option={this.options} />
+        </Box>
+        <Box title="这是个标题5">
+          <ReactEcharts option={this.options} />
+        </Box>
       </div>
     );
   }
