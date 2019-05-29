@@ -3,16 +3,16 @@ import './index.less';
 
 interface IBox {
   title?: any
-  width?: number,
-  height?: number,
+  width?: string,
+  height?: string,
   style?: object,
   children?: any
 }
 const Box = ({
   title = '',
   style = {},
-  width = 320,
-  height = 300,
+  width = '100%',
+  height = '300px',
   children,
 }: IBox) => {
   return(

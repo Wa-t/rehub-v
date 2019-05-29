@@ -1,5 +1,5 @@
-import { getSession } from '@/common/utils'
-import { Loader } from '@/components/Loader';
+// import { getSession } from '@/common/utils'
+// import { Loader } from '@/components/Loader';
 import KOS, { KosProps } from 'kos-core';
 import * as React from 'react';
 import { siderMenus } from '../common/utils/Menus';
@@ -33,7 +33,7 @@ interface IProps extends KosProps<II> {
 export class App extends React.PureComponent<IProps> {
   public render() {
     const { location } = this.props;
-    const isLogin = getSession('isLogin');
+    // const isLogin = getSession('isLogin');
     /*
       对从menus文件引入的对象 进行处理
       将占位符部分都去掉
@@ -51,14 +51,18 @@ export class App extends React.PureComponent<IProps> {
       return location.pathname.includes(item);
     });
     return (
-      <div>
-        {!isLogin ? (
-          <Loader spinning={true} fullScreen={true} />
-        ) : (
-          <div className="content-wrapper">
-            {errPage ? <Pages /> : <span>404 访问页面不存在</span>}
-          </div>
-        )}
+      // <div>
+      //   {/* {!isLogin ? (
+      //     <Loader spinning={true} fullScreen={true} />
+      //   ) : (
+      //     <div className="content-wrapper">
+      //       {errPage ? <Pages /> : <span>404 访问页面不存在</span>}
+      //     </div>
+      //   )} */}
+        
+      // </div>
+      <div className="content-wrapper">
+        {errPage ? <Pages /> : <span>404 访问页面不存在</span>}
       </div>
     );
   }

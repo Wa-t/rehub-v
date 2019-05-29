@@ -2,6 +2,7 @@ import { AutoWrapper } from '@/components';
 import * as Skins from '@/components/Skins';
 import ReactEcharts from 'echarts-for-react';
 import * as React from 'react';
+import { Col, Container, Row  } from 'react-grid-system';
 import { IProps } from './interface';
 import model from './model';
 
@@ -28,23 +29,44 @@ export class Dashboard extends React.Component<IProps> {
     const Box = Skins.Default.Box;
 
     return (
-      <div>
-        <Box title="这是个标题1">
-          <ReactEcharts option={this.options} />
-        </Box>
-        <Box title="这是个标题2">
-          <ReactEcharts option={this.options} />
-        </Box>
-        <Box title="这是个标题3">
-          <ReactEcharts option={this.options} />
-        </Box>
-        <Box title="这是个标题4">
-          <ReactEcharts option={this.options} />
-        </Box>
-        <Box title="这是个标题5">
-          <ReactEcharts option={this.options} />
-        </Box>
-      </div>
+      <Container>
+        <Row>
+          <Col md={4}>
+            <Box title="这是个标题11" height="250px">
+              <ReactEcharts option={this.options} />
+            </Box>
+          </Col>
+          <Col md={4}>
+            <Box title="这是个标题12" height="250px">
+              <ReactEcharts option={this.options} />
+            </Box>
+          </Col>
+          <Col md={4}>
+            <Box title="这是个标题13" height="250px">
+              <ReactEcharts option={this.options} />
+            </Box>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <Box title="这是个标题21">
+              <ReactEcharts option={this.options} />
+            </Box>
+          </Col>
+          <Col md={6}>
+            <Box title="这是个标题22">
+              <ReactEcharts option={this.options} />
+            </Box>
+          </Col>
+        </Row>
+        {/* <Row>
+          <Col md={12}>
+            <Box title="这是个标题31">
+              <ReactEcharts option={this.options} />
+            </Box>
+          </Col>
+        </Row> */}
+      </Container>
     );
   }
 }
