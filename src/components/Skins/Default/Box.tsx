@@ -4,7 +4,8 @@ import './index.less';
 interface IBox {
   title?: any
   width?: string,
-  height?: string,
+  tHeight?: string,
+  bHeight?: string,
   style?: object,
   children?: any
 }
@@ -12,19 +13,22 @@ const Box = ({
   title = '',
   style = {},
   width = '100%',
-  height = '300px',
+  bHeight = '300px',
+  tHeight = '46px',
   children,
 }: IBox) => {
   return(
     <div className="default-box-wrapper" style={{ ...style, width }}>
       {
-        title && <div className="default-box-title">
+        title && <div className="default-box-title" style={{ height: tHeight, lineHeight: tHeight }}>
           {title}
         </div>
       }
-      <div className="default-box-body" style={{ height }}>
-        {children}
-      </div>
+      {
+        children && <div className="default-box-body" style={{ height: bHeight }}>
+          {children}
+        </div>
+      }
     </div>
   )
 };
