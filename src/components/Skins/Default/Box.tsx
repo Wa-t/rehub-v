@@ -19,16 +19,12 @@ const Box = ({
 }: IBox) => {
   return(
     <div className="default-box-wrapper" style={{ ...style, width }}>
-      {
-        title && <div className="default-box-title" style={{ height: tHeight, lineHeight: tHeight }}>
+      {title && <div className="default-box-title" style={{ height: tHeight, lineHeight: tHeight }}>
           {title}
-        </div>
-      }
-      {
-        children && <div className="default-box-body" style={{ height: bHeight }}>
+        </div>}
+      {children && <div className="default-box-body" style={{ height: bHeight }}>
           {children}
-        </div>
-      }
+        </div>}
     </div>
   )
 };

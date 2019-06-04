@@ -10,6 +10,8 @@ class Background {
     // 宽高自适应
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
+    this.row = 0;
+    this.col = 0;
     // 获取2d上下文
     this.ctx = this.canvas.getContext('2d');
 
@@ -35,5 +37,3 @@ class Background {
     }
   }
 }
-
-// export default new Background();
