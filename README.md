@@ -1,0 +1,21 @@
+# 基于React框架构建的github数据可视化平台
+
+## 技术栈
+* [React](https://www.reactjs.org/)
+* [umi](https://umijs.org/zh/)
+* [dva](https://dvajs.com/)
+* [Typescript](http://www.typescriptlang.org/)
+* [ECharts](https://www.echartsjs.com/index.html)
+* [echarts-for-react](https://www.npmjs.com/package/echarts-for-react)
+
+## API
+* [REST API v3](https://developer.github.com/v3/)
+### 接口列表
+* 用户信息：https://api.github.com/users/${username}
+* Repositories List：https://api.github.com/users/${username}/repos
+
+
+## 参考项目
+* [基于Vue框架构建的github数据可视化平台](https://github.com/HongqingCao/GitDataV)
+
+
