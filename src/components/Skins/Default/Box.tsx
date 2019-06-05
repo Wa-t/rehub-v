@@ -14,7 +14,7 @@ const Box = ({
   style = {},
   width = '100%',
   bHeight = '300px',
-  tHeight = '46px',
+  tHeight = '40px',
   children,
 }: IBox) => {
   return(
