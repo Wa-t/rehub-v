@@ -11,7 +11,7 @@ import './index.less';
 
 const Box = Skins.Default.Box;
 
-setConfiguration({ containerWidths:  [1366]})
+setConfiguration({ containerWidths: [1366] })
 
 const Dashboard: React.FC<IProps> = ({
   loading
@@ -23,46 +23,46 @@ const Dashboard: React.FC<IProps> = ({
       bottom: 30,
     },
     xAxis: {
-        type: 'category',
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-        axisLabel: {
+      type: 'category',
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+      axisLabel: {
+        color: '#dafef9'
+      },
+      axisLine: {
+        lineStyle: {
           color: '#dafef9'
-        },
-        axisLine: {
-            lineStyle: {
-            color: '#dafef9'
-          }
         }
+      }
     },
     yAxis: {
-        type: 'value',
-        axisLine: {
-          lineStyle: {
+      type: 'value',
+      axisLine: {
+        lineStyle: {
           color: '#dafef9'
         }
       }
     },
     series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line'
+      data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: 'line'
     }],
     // color: '#dafef9'
   }
   const optionsLeft2 = {
     xAxis: {
-        type: 'category',
-        data: []
+      type: 'category',
+      data: []
     },
     yAxis: {
-        type: 'value'
+      type: 'value'
     },
     series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'pie'
+      data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: 'pie'
     }]
   }
   return (
-    <Container>
+    <Container className="dash-container">
       <Row className="header">
         <Col md={12}>
           <Box title="GITHUB DATA CENTER" tHeight="60px" />

@@ -5,7 +5,7 @@ html, body, #root {
 
 body {
   margin: 0;
-  background: #0b0f16;
+  /* background: #0b0f16; */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -15,4 +15,5 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+  background-color: #003e4a;
 }
