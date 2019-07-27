@@ -63,7 +63,7 @@ class Index extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.content}><Link to="/dashboard">Go to Dashboard</Link></div>
-        <canvas ref={this.canvasRef} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: 1 }} />>
+        <canvas ref={this.canvasRef} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: 1 }} />
       </div>
     );
   }
