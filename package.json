@@ -16,7 +16,8 @@
     "echarts-for-react": "^2.0.15-beta.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-grid-system": "^4.4.6"
+    "react-grid-system": "^4.4.6",
+    "react-particles-js": "^2.7.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",

@@ -1,7 +1,7 @@
 import { IConfig } from 'umi-types';
 
 // ref: https://umijs.org/config/
-const config: IConfig =  {
+const config: IConfig = {
   treeShaking: true,
   base: '/rehub-v/',
   publicPath: '/rehub-v/',
