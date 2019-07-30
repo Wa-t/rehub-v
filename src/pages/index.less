@@ -8,9 +8,29 @@
     position: relative;
     padding-top: 200px;
     right: 90px;
-    a {
-      text-decoration: none;
-      color: azure
+  }
+  .form {
+    display: inline-block;
+    position: absolute;
+    top: 40%;
+    right: 10%;
+    .nameInput {
+      width: 200px;
+      color: #002f39;
+    }
+    .submit{
+      color: #002f39;
+      &:hover, &:focus {
+        color: #002f39;
+      }
+    }
+    .submit, .nameInput{
+      border-radius: 0;
+      outline: none;
+      border-color: #002f39;
+      &:hover, &:focus{
+        border-color: #003e4a
+      }
     }
   }
 }

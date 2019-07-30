@@ -3,7 +3,7 @@ import { formatMessage } from 'umi-plugin-locale';
 import { autobind } from 'core-decorators'
 import Link from 'umi/link';
 import router from 'umi/router';
-import { Input, Button } from 'antd';
+import { Input, Button, Form } from 'antd';
 import Particles from 'react-particles-js';
 import styles from './index.less';
 import { IProps, IState } from './interface';
@@ -70,7 +70,7 @@ class Index extends React.Component<IProps, IState> {
   //   window.requestAnimFrame(this.loopAnimation);
   // }
   onGoDashboard() {
-    router.push('/dashboard');
+    router.push('dashboard');
   }
   render() {
     return (
@@ -133,12 +133,14 @@ class Index extends React.Component<IProps, IState> {
             }
           }}
         />
-        {/* <div className={styles.content}><Link to="/dashboard">Go to Dashboard</Link></div> */}
-        <div className={styles.content}>
-          <Input placeholder="请输入GitHub账号" style={{ width: 200, outline: 'none' }} />
-          <Button onClick={this.onGoDashboard}>生成</Button>
-        </div>
-
+        <Form layout="inline" className={styles.form}>
+          <Form.Item>
+            <Input placeholder="请输入GitHub账号" className={styles.nameInput} />
+          </Form.Item>
+          <Form.Item>
+            <Button onClick={this.onGoDashboard} className={styles.submit}>生成</Button>
+          </Form.Item>
+        </Form>
         {/* <canvas ref={this.loadCanvas} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: -1 }} /> */}
       </div>
     );
