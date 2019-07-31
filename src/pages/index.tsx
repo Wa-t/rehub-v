@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { formatMessage } from 'umi-plugin-locale';
 import { autobind } from 'core-decorators'
 import Link from 'umi/link';
 import router from 'umi/router';
-import { Input, Button, Form } from 'antd';
+import { Input, Button, Form, message } from 'antd';
 import Particles from 'react-particles-js';
+import request from '@/utils/request';
 import styles from './index.less';
 import { IProps, IState } from './interface';
 
@@ -72,7 +72,24 @@ class Index extends React.Component<IProps, IState> {
   onGoDashboard() {
     router.push('dashboard');
   }
+  onSubmit() {
+    this.props.form.validateFields((err, values) => {
+      if (err) {
+        message.warning('请输入github账号');
+        return false;
+      }
+      const res = request({
+        url: `https://api.github.com/users/${values.username}`,
+        method: 'get',
+      })
+      console.log(res)
+      // if (res.name === values.username) {
+      //   console.log(12)
+      // }
+    });
+  }
   render() {
+    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
     return (
       <div className={styles.container}>
         <Particles
@@ -135,10 +152,15 @@ class Index extends React.Component<IProps, IState> {
         />
         <Form layout="inline" className={styles.form}>
           <Form.Item>
-            <Input placeholder="请输入GitHub账号" className={styles.nameInput} />
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: 'Please input your github username!' }],
+            })(
+              <Input placeholder="请输入GitHub账号" className={styles.nameInput} />,
+            )}
+
           </Form.Item>
           <Form.Item>
-            <Button onClick={this.onGoDashboard} className={styles.submit}>生成</Button>
+            <Button onClick={this.onSubmit} className={styles.submit}>生成</Button>
           </Form.Item>
         </Form>
         {/* <canvas ref={this.loadCanvas} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: -1 }} /> */}
@@ -148,4 +170,4 @@ class Index extends React.Component<IProps, IState> {
 }
 
 
-export default Index
+export default Form.create<IProps>()(Index)

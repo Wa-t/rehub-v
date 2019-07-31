@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "antd": "^3.19.2",
+    "axios": "^0.19.0",
     "core-decorators": "^0.20.0",
     "dva": "^2.6.0-beta.4",
     "echarts": "^4.2.1",
