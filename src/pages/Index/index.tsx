@@ -4,11 +4,15 @@ import Link from 'umi/link';
 import router from 'umi/router';
 import { Input, Button, Form, message } from 'antd';
 import Particles from 'react-particles-js';
+import { connect } from 'dva';
 import request from '@/utils/request';
 import styles from './index.less';
 import { IProps, IState } from './interface';
+import { ConnectProps } from '@/models/connect'
+import { GlobalModelState } from '@/models/global'
 
 @autobind
+// @connect(({ state }) => ({ state }))
 class Index extends React.Component<IProps, IState> {
   // canvas: HTMLCanvasElement;
   // ctx: CanvasRenderingContext2D;
@@ -78,11 +82,21 @@ class Index extends React.Component<IProps, IState> {
         message.warning('请输入github账号');
         return false;
       }
-      const res = request({
+
+      // this.props.dispatch()
+
+      request({
         url: `https://api.github.com/users/${values.username}`,
         method: 'get',
+      }).then(res => {
+        window.localStorage.setItem('currentUser', JSON.stringify(res))
+        router.push('dashboard');
+      }).catch(e => {
+        message.error(e);
       })
-      console.log(res)
+
+
+      // console.log(res)
       // if (res.name === values.username) {
       //   console.log(12)
       // }

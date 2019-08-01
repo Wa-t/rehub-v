@@ -3,9 +3,20 @@ import { Reducer } from 'redux';
 import { Effect } from './connect';
 
 
-
+export interface CurrentUser {
+  avatar?: string;
+  name?: string;
+  title?: string;
+  group?: string;
+  signature?: string;
+  tags?: {
+    key: string;
+    label: string;
+  }[];
+  unreadCount?: number;
+}
 export interface GlobalModelState {
-
+  currentUser?: CurrentUser
 }
 
 export interface GlobalModelType {
@@ -15,7 +26,8 @@ export interface GlobalModelType {
     clearNotices: Effect;
   };
   reducers: {
-    changeLayoutCollapsed: Reducer<GlobalModelState>;
+    // changeLayoutCollapsed: Reducer<GlobalModelState>;
+    updateUser: Reducer<GlobalModelType>
   };
   subscriptions: { setup: Subscription };
 }
@@ -24,8 +36,7 @@ const GlobalModel: GlobalModelType = {
   namespace: 'global',
 
   state: {
-    collapsed: false,
-    notices: [],
+    currentUser: {}
   },
 
   effects: {
@@ -45,13 +56,12 @@ const GlobalModel: GlobalModelType = {
   },
 
   reducers: {
-    changeLayoutCollapsed(state = { notices: [], collapsed: true }, { payload }) {
+    updateUser(state, action) {
       return {
         ...state,
-        collapsed: payload,
+        currentUser: action.payload || {},
       };
     },
-
   },
 
   subscriptions: {
