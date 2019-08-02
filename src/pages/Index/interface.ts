@@ -6,5 +6,7 @@ export interface IProps extends FormComponentProps {
 }
 
 export interface IState {
-    canvas: HTMLCanvasElement
+    // canvas: HTMLCanvasElement
+    loading: boolean
+
 }

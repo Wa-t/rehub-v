@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { autobind } from 'core-decorators'
 import Link from 'umi/link';
 import router from 'umi/router';
-import { Input, Button, Form, message } from 'antd';
+import { Input, Button, Form, message, Spin } from 'antd';
 import Particles from 'react-particles-js';
 import { connect } from 'dva';
 import request from '@/utils/request';
@@ -20,15 +20,15 @@ class Index extends React.Component<IProps, IState> {
 
   constructor(props: IProps) {
     super(props)
-    // this.state = {
-    //   canvas: null
-    // }
+    this.state = {
+      loading: false,
+    }
   }
 
   loadCanvas = (element: HTMLCanvasElement) => {
     if (element) {
       this.setState({
-        canvas: element,
+        // canvas: element,
       })
     }
   }
@@ -73,112 +73,110 @@ class Index extends React.Component<IProps, IState> {
 
   //   window.requestAnimFrame(this.loopAnimation);
   // }
-  onGoDashboard() {
-    router.push('dashboard');
-  }
   onSubmit() {
     this.props.form.validateFields((err, values) => {
       if (err) {
         message.warning('请输入github账号');
         return false;
       }
-
-      // this.props.dispatch()
-
+      this.setState({
+        loading: true,
+      })
       request({
         url: `https://api.github.com/users/${values.username}`,
         method: 'get',
       }).then(res => {
+        this.setState({
+          loading: false,
+        })
+        if (values.username !== res.login) {
+          message.warn('获取信息失败，请检查GitHub账号！');
+          return false;
+        }
         window.localStorage.setItem('currentUser', JSON.stringify(res))
         router.push('dashboard');
       }).catch(e => {
         message.error(e);
       })
-
-
-      // console.log(res)
-      // if (res.name === values.username) {
-      //   console.log(12)
-      // }
     });
   }
   render() {
-    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     return (
-      <div className={styles.container}>
-        <Particles
-          style={{
-            position: 'absolute',
-            zIndex: -10,
-            background: 'linear-gradient(45deg, rgb(0, 47, 57) 0%, rgb(0, 33, 47) 100%)'
-          }}
-          params={{
-            particles: {
-              number: {
-                value: 160,
-                density: {
+        <div className={styles.container}>
+          <Particles
+            style={{
+              position: 'absolute',
+              zIndex: -10,
+              background: 'linear-gradient(45deg, rgb(0, 47, 57) 0%, rgb(0, 33, 47) 100%)'
+            }}
+            params={{
+              particles: {
+                number: {
+                  value: 160,
+                  density: {
+                    enable: false
+                  }
+                },
+                size: {
+                  value: 3,
+                  random: true,
+                  anim: {
+                    speed: 4,
+                    size_min: 0.3
+                  }
+                },
+                line_linked: {
                   enable: false
-                }
-              },
-              size: {
-                value: 3,
-                random: true,
-                anim: {
-                  speed: 4,
-                  size_min: 0.3
-                }
-              },
-              line_linked: {
-                enable: false
-              },
-              move: {
-                random: true,
-                speed: 1,
-                direction: "bottom",
-                out_mode: "out"
-              }
-            },
-            interactivity: {
-              events: {
-                onhover: {
-                  enable: true,
-                  mode: "bubble"
                 },
-                onclick: {
-                  enable: true,
-                  mode: "repulse"
+                move: {
+                  random: true,
+                  speed: 1,
+                  direction: "bottom",
+                  out_mode: "out"
                 }
               },
-              modes: {
-                bubble: {
-                  distance: 250,
-                  duration: 2,
-                  size: 0,
-                  opacity: 0
+              interactivity: {
+                events: {
+                  onhover: {
+                    enable: true,
+                    mode: "bubble"
+                  },
+                  onclick: {
+                    enable: true,
+                    mode: "repulse"
+                  }
                 },
-                repulse: {
-                  distance: 400,
-                  duration: 4
+                modes: {
+                  bubble: {
+                    distance: 250,
+                    duration: 2,
+                    size: 0,
+                    opacity: 0
+                  },
+                  repulse: {
+                    distance: 400,
+                    duration: 4
+                  }
                 }
               }
-            }
-          }}
-        />
-        <Form layout="inline" className={styles.form}>
-          <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your github username!' }],
-            })(
-              <Input placeholder="请输入GitHub账号" className={styles.nameInput} />,
-            )}
+            }}
+          />
+          <Form layout="inline" className={styles.form}>
+            <Form.Item>
+              {getFieldDecorator('username', {
+                rules: [{ required: true, message: 'Please input your github username!' }],
+              })(
+                <Input placeholder="请输入GitHub账号" className={styles.nameInput} />,
+              )}
 
-          </Form.Item>
-          <Form.Item>
-            <Button onClick={this.onSubmit} className={styles.submit}>生成</Button>
-          </Form.Item>
-        </Form>
-        {/* <canvas ref={this.loadCanvas} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: -1 }} /> */}
-      </div>
+            </Form.Item>
+            <Form.Item>
+              <Button onClick={this.onSubmit} className={styles.submit} loading={this.state.loading}>生成</Button>
+            </Form.Item>
+          </Form>
+          {/* <canvas ref={this.loadCanvas} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: -1 }} /> */}
+        </div>
     );
   }
 }

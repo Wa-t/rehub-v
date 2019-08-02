@@ -3,8 +3,8 @@ import { IConfig } from 'umi-types';
 // ref: https://umijs.org/config/
 const config: IConfig = {
   treeShaking: true,
-  base: '/rehub-v',
-  publicPath: '',
+  base: '',
+  publicPath: '/rehub-v',
   history: 'hash',
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
