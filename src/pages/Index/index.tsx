@@ -1,18 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { autobind } from 'core-decorators'
-import Link from 'umi/link';
-import router from 'umi/router';
-import { Input, Button, Form, message, Spin } from 'antd';
-import Particles from 'react-particles-js';
+import { Input, Button, Form } from 'antd';
 import { connect } from 'dva';
-import request from '@/utils/request';
-import styles from './index.less';
+import { ConnectState } from '@/models/connect';
+import * as Skins from '@/components/Skins';
 import { IProps, IState } from './interface';
-import { ConnectProps } from '@/models/connect'
-import { GlobalModelState } from '@/models/global'
+import styles from './index.less';
 
+const { Background } = Skins.Default;
+
+
+
+// interface Index {
+//   props: IProps;
+//   state: IState;
+// }
+
+// @connect((state, dispatch) => ({
+//   state,
+//   dispatch
+// }))
 @autobind
-// @connect(({ state }) => ({ state }))
 class Index extends React.Component<IProps, IState> {
   // canvas: HTMLCanvasElement;
   // ctx: CanvasRenderingContext2D;
@@ -75,111 +83,43 @@ class Index extends React.Component<IProps, IState> {
   // }
   onSubmit() {
     this.props.form.validateFields((err, values) => {
-      if (err) {
-        message.warning('请输入github账号');
-        return false;
-      }
+      const { dispatch } = this.props;
+
+      dispatch({
+        type: 'global/fetchUser',
+        payload: {
+          username: values.username,
+        }
+      })
       this.setState({
         loading: true,
       })
-      request({
-        url: `https://api.github.com/users/${values.username}`,
-        method: 'get',
-      }).then(res => {
-        this.setState({
-          loading: false,
-        })
-        if (values.username !== res.login) {
-          message.warn('获取信息失败，请检查GitHub账号！');
-          return false;
-        }
-        window.localStorage.setItem('currentUser', JSON.stringify(res))
-        router.push('dashboard');
-      }).catch(e => {
-        message.error(e);
-      })
     });
   }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-        <div className={styles.container}>
-          <Particles
-            style={{
-              position: 'absolute',
-              zIndex: -10,
-              background: 'linear-gradient(45deg, rgb(0, 47, 57) 0%, rgb(0, 33, 47) 100%)'
-            }}
-            params={{
-              particles: {
-                number: {
-                  value: 160,
-                  density: {
-                    enable: false
-                  }
-                },
-                size: {
-                  value: 3,
-                  random: true,
-                  anim: {
-                    speed: 4,
-                    size_min: 0.3
-                  }
-                },
-                line_linked: {
-                  enable: false
-                },
-                move: {
-                  random: true,
-                  speed: 1,
-                  direction: "bottom",
-                  out_mode: "out"
-                }
-              },
-              interactivity: {
-                events: {
-                  onhover: {
-                    enable: true,
-                    mode: "bubble"
-                  },
-                  onclick: {
-                    enable: true,
-                    mode: "repulse"
-                  }
-                },
-                modes: {
-                  bubble: {
-                    distance: 250,
-                    duration: 2,
-                    size: 0,
-                    opacity: 0
-                  },
-                  repulse: {
-                    distance: 400,
-                    duration: 4
-                  }
-                }
-              }
-            }}
-          />
-          <Form layout="inline" className={styles.form}>
-            <Form.Item>
-              {getFieldDecorator('username', {
-                rules: [{ required: true, message: 'Please input your github username!' }],
-              })(
-                <Input placeholder="请输入GitHub账号" className={styles.nameInput} />,
-              )}
+      <div className={styles.container}>
+        <Background />
+        <Form layout="inline" className={styles.form}>
+          <Form.Item>
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: 'Please input your github username!' }],
+            })(
+              <Input placeholder="请输入GitHub账号" className={styles.nameInput} />,
+            )}
 
-            </Form.Item>
-            <Form.Item>
-              <Button onClick={this.onSubmit} className={styles.submit} loading={this.state.loading}>生成</Button>
-            </Form.Item>
-          </Form>
-          {/* <canvas ref={this.loadCanvas} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: -1 }} /> */}
-        </div>
+          </Form.Item>
+          <Form.Item>
+            <Button onClick={this.onSubmit} className={styles.submit} loading={this.state.loading}>生成</Button>
+          </Form.Item>
+        </Form>
+        {/* <canvas ref={this.loadCanvas} id="canvas" style={{ position: 'absolute', bottom: 0, left: 0, zIndex: -1 }} /> */}
+      </div>
     );
   }
 }
 
-
-export default Form.create<IProps>()(Index)
+const mapStateToProps = () => ({})
+export default connect(mapStateToProps)(Form.create()(Index))

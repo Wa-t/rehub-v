@@ -1,19 +1,12 @@
 import { Subscription } from 'dva';
 import { Reducer } from 'redux';
+import { message } from 'antd';
+import router from 'umi/router';
 import { Effect } from './connect';
+import { quireUser } from '../pages/Index/service';
 
 
 export interface CurrentUser {
-  avatar?: string;
-  name?: string;
-  title?: string;
-  group?: string;
-  signature?: string;
-  tags?: {
-    key: string;
-    label: string;
-  }[];
-  unreadCount?: number;
 }
 export interface GlobalModelState {
   currentUser?: CurrentUser
@@ -23,11 +16,10 @@ export interface GlobalModelType {
   namespace: 'global';
   state: GlobalModelState;
   effects: {
-    clearNotices: Effect;
+    fetchUser: Effect;
   };
   reducers: {
-    // changeLayoutCollapsed: Reducer<GlobalModelState>;
-    updateUser: Reducer<GlobalModelType>
+    updateState: Reducer<GlobalModelState>
   };
   subscriptions: { setup: Subscription };
 }
@@ -40,23 +32,25 @@ const GlobalModel: GlobalModelType = {
   },
 
   effects: {
-    *clearNotices({ payload }, { put, select }) {
+    * fetchUser({ payload }, { call, put, select }) {
+      const res = yield call(quireUser, payload)
+
+      if (!res) {
+        message.warning('请输入github账号');
+        return false;
+      }
       yield put({
-        type: 'saveClearedNotices',
-        payload,
-      });
-      const count: number = yield select(state => state.global);
-      yield put({
-        type: 'user/changeNotifyCount',
+        type: 'updateState',
         payload: {
-          totalCount: count,
+          currentUser: res,
         },
       });
+      router.push('dashboard');
     },
   },
 
   reducers: {
-    updateUser(state, action) {
+    updateState(state, action) {
       return {
         ...state,
         currentUser: action.payload || {},

@@ -11,7 +11,9 @@
     "baseUrl": ".",
     "strict": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
     "allowSyntheticDefaultImports": true
   }

@@ -1,7 +1,7 @@
 import { Effect } from 'dva';
 import { Reducer } from 'redux';
 // import { CurrentUser } from './interface';
-import { queryUsers } from './service';
+import { quireUser } from './service';
 
 
 
@@ -29,7 +29,7 @@ const UserModel: UserModelType = {
 
     effects: {
         * queryUser(_, { call, put }) {
-            const response = yield call(queryUsers);
+            const response = yield call(quireUser);
             yield put({
                 type: 'global/updateState',
                 payload: response,

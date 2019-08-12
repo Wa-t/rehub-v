@@ -2,6 +2,7 @@
 
 ## 技术栈
 * [React](https://www.reactjs.org/)
+* [React Hooks](https://reactjs.org/docs/hooks-intro.html)
 * [umi](https://umijs.org/zh/)
 * [dva](https://dvajs.com/)
 * [Typescript](http://www.typescriptlang.org/)
@@ -15,7 +16,15 @@
 * Repositories List：https://api.github.com/users/${username}/repos
 
 
+## 版块
+
+### 个人信息
+
+
 ## 参考项目
 * [基于Vue框架构建的github数据可视化平台](https://github.com/HongqingCao/GitDataV)
+
+## 微信交流
+> w121680215
 
 

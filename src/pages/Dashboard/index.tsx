@@ -1,22 +1,33 @@
-import React, { Component, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
 import { Col, Container, Row, setConfiguration } from 'react-grid-system';
 import Chart from '@/components/Chart';
 import * as Skins from '@/components/Skins';
 import { IProps } from './interface';
+import BasicInfo from './Components/BasicInfo'
 import mapOption from '../../../mock/mapOption';
 import calendar from '../../../mock/calendar';
 import './index.less';
 
 
-const Box = Skins.Default.Box;
+const { Box } = Skins.Default;
 
 setConfiguration({ containerWidths: [1366] })
+const currentUser = window.sessionStorage.getItem('currentUser')
+// console.log('currentUser', currentUser)
 
 const Dashboard: React.FC<IProps> = ({
   loading
 }) => {
-  console.log('mapOption', mapOption)
+
+  const [userInfo, setUserInfo] = useState(JSON.parse(currentUser));
+
+  useEffect(() => {
+    setUserInfo(currentUser)
+  }, [currentUser])
+
+
+  // console.log('mapOption', mapOption)
   const optionsLeft1 = {
     grid: {
       top: 20,
@@ -70,8 +81,11 @@ const Dashboard: React.FC<IProps> = ({
       </Row>
       <Row className="container">
         <Col md={3} className="left">
-          <Box title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>这是个标题left</div>} bHeight="200px">
-            <Chart option={optionsLeft1} />
+          <Box
+            title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>个人信息</div>}
+            bHeight="200px"
+          >
+            <BasicInfo option={userInfo} />
           </Box>
           <Box title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>这是个标题left</div>} bHeight="250px" style={{ marginTop: 16 }}>
             <Chart option={optionsLeft2} />
