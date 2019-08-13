@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'dva';
 import { Col, Container, Row, setConfiguration } from 'react-grid-system';
+import { ConnectProps, ConnectState } from '@/models/connect';
 import Chart from '@/components/Chart';
 import * as Skins from '@/components/Skins';
 import { IProps } from './interface';
 import BasicInfo from './Components/BasicInfo'
-import mapOption from '../../../mock/mapOption';
-import calendar from '../../../mock/calendar';
+// import mapOption from '../../../mock/mapOption';
+// import calendar from '../../../mock/calendar';
 import './index.less';
 
 
@@ -16,15 +17,16 @@ setConfiguration({ containerWidths: [1366] })
 const currentUser = window.sessionStorage.getItem('currentUser')
 // console.log('currentUser', currentUser)
 
+// @connect(({ global }) => ({ global }))
 const Dashboard: React.FC<IProps> = ({
-  loading
+  global
 }) => {
+  const { currentUser } = global;
+  // const [userInfo, setUserInfo] = useState(JSON.parse(currentUser));
 
-  const [userInfo, setUserInfo] = useState(JSON.parse(currentUser));
-
-  useEffect(() => {
-    setUserInfo(currentUser)
-  }, [currentUser])
+  // useEffect(() => {
+  //   setUserInfo(currentUser)
+  // }, [currentUser])
 
 
   // console.log('mapOption', mapOption)
@@ -85,7 +87,7 @@ const Dashboard: React.FC<IProps> = ({
             title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>个人信息</div>}
             bHeight="200px"
           >
-            <BasicInfo option={userInfo} />
+            <BasicInfo option={currentUser} />
           </Box>
           <Box title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>这是个标题left</div>} bHeight="250px" style={{ marginTop: 16 }}>
             <Chart option={optionsLeft2} />
@@ -93,10 +95,10 @@ const Dashboard: React.FC<IProps> = ({
         </Col>
         <Col md={6} className="center">
           <Box title="模拟迁徙" bHeight="350px">
-            <Chart option={mapOption} />
+            <Chart option={{}} />
           </Box>
           <Box title="github提交记录" bHeight="104px" style={{ marginTop: 16 }}>
-            <Chart option={calendar} />
+            <Chart option={{}} />
           </Box>
         </Col>
         <Col md={3} className="right">
@@ -116,4 +118,4 @@ const Dashboard: React.FC<IProps> = ({
     </Container>)
 }
 
-export default Dashboard;
+export default connect(({ global }: ConnectState) => ({ global }))(Dashboard);

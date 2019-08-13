@@ -42,7 +42,7 @@ const GlobalModel: GlobalModelType = {
       yield put({
         type: 'updateState',
         payload: {
-          currentUser: res,
+          ...res,
         },
       });
       router.push('dashboard');
@@ -53,7 +53,7 @@ const GlobalModel: GlobalModelType = {
     updateState(state, action) {
       return {
         ...state,
-        currentUser: action.payload || {},
+        currentUser: { ...action.payload } || {},
       };
     },
   },
