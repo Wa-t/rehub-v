@@ -1,67 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import Chart from '@/components/Chart';
 import { IChartProps } from '../../interface';
-import defaultOption from '../DefaultOption';
+// import defaultcurrentUser from '../DefaultcurrentUser';
 import Empty from '../Empty';
 import styles from './index.less';
 
 
 
 const BasciInfo: React.FC<IChartProps> = ({
-    option
+    currentUser
 }) => {
-    // const [userInfo, setUserInfo] = useState(option)
-
-    // useEffect(() => {
-    //     setUserInfo({ ...option })
-    // }, [option])
-    // console.log(JSON.parse(userInfo))
-    // if (!userInfo) {
-    //     return '没有获取到用户信息！'
-    // }
-    // console.log(option)
-    if (JSON.stringify(option) === '{}') {
+    if (JSON.stringify(currentUser) === '{}') {
         return <Empty />;
     }
     return (
-        // <Chart option={chartOption} />
-
         <div className={styles.container}>
             <div className="info">
-                <img className={styles.avatar} src={option.avatar_url} alt={option.login} />
+                <img className={styles.avatar} src={currentUser.avatar_url} alt={currentUser.login} />
                 <div className={styles.info_row}>
                     <a
-                        href={`https://github.com/${option.login}`}
+                        href={currentUser.html_url}
                         target="_blank"
                     >
-                        <i className="iconfont" style={{ color: '#dafef9' }} >&#xe606;</i>
+                        <i className="iconfont" >&#xe606;</i>
                     </a>
 
                     <a
-                        href={`https://github.com/${option.login}?tab=repositories`}
+                        href={`https://github.com/${currentUser.login}?tab=repositories`}
                         target="_blank"
+                        style={{ marginLeft: 20 }}
                     >
-                        <i className="iconfont" style={{ color: '#dafef9', marginLeft: 20 }} >&#xe6e9;</i>
-                        {option.public_repos}
+                        <i className="iconfont">&#xe6e9;</i>
+                        {currentUser.public_repos}
                     </a>
                     <a
-                        href={`https://github.com/${option.login}?tab=repositories`}
+                        href={`https://github.com/${currentUser.login}?tab=repositories`}
                         target="_blank"
+                        style={{ marginLeft: 20 }}
                     >
-                        <i className="iconfont" style={{ marginLeft: 20 }} >&#xe63e;</i>
-                        {option.public_repos}
+                        <i className="iconfont" >&#xe63e;</i>
+                        {currentUser.public_repos}
                     </a>
-                    <i className="iconfont" style={{ color: '#dafef9', marginLeft: 20 }} >&#xe65c;{option.following}</i>
+                    <i className="iconfont" style={{ marginLeft: 20 }} >&#xe65c;{currentUser.following}</i>
                 </div>
                 <div className={styles.info_row}>
-                    <i className="iconfont" style={{ color: '#dafef9' }} >&#xe622;{option.followers}</i>
-                    <a href={option.blog} target="_blank">
-                        <i className="iconfont" style={{ marginLeft: 20 }} >&#xe632;</i>
+                    <i className="iconfont" >&#xe622;{currentUser.followers}</i>
+                    <a href={currentUser.blog} target="_blank" style={{ marginLeft: 20 }} >
+                        <i className="iconfont">&#xe632;</i>
                     </a>
-
+                    <i className="iconfont" style={{ marginLeft: 20 }} >&#xe600;{currentUser.location}</i>
                 </div>
                 <div className={styles.info_row}>
-                    <i className="iconfont" style={{ color: '#dafef9' }} >&#xe623;{option.created_at.slice(0, 10)}</i>
+                    <i className="iconfont" >&#xe623;{currentUser.created_at.slice(0, 10)}</i>
                 </div>
 
 

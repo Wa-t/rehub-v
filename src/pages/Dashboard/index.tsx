@@ -5,7 +5,8 @@ import { ConnectProps, ConnectState } from '@/models/connect';
 import Chart from '@/components/Chart';
 import * as Skins from '@/components/Skins';
 import { IProps } from './interface';
-import BasicInfo from './Components/BasicInfo'
+import BasicInfo from './Components/BasicInfo';
+import Language from './Components/Language';
 // import mapOption from '../../../mock/mapOption';
 // import calendar from '../../../mock/calendar';
 import './index.less';
@@ -87,10 +88,10 @@ const Dashboard: React.FC<IProps> = ({
             title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>个人信息</div>}
             bHeight="200px"
           >
-            <BasicInfo option={currentUser} />
+            <BasicInfo currentUser={currentUser} />
           </Box>
-          <Box title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>这是个标题left</div>} bHeight="250px" style={{ marginTop: 16 }}>
-            <Chart option={optionsLeft2} />
+          <Box title={<div style={{ textAlign: 'left', paddingLeft: 16 }}>语言统计</div>} bHeight="250px" style={{ marginTop: 16 }}>
+            <Language currentUser={currentUser} />
           </Box>
         </Col>
         <Col md={6} className="center">

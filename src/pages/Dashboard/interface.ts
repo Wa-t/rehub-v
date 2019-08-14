@@ -6,5 +6,5 @@ export interface IProps extends ConnectProps {
 }
 
 export interface IChartProps {
-  option: any
+  currentUser: any
 }
