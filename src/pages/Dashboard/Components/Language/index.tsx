@@ -6,20 +6,21 @@ import defaultOption from '../DefaultOption';
 import Empty from '../Empty';
 // import styles from './index.less';
 
-
+interface Languages {
+    [prop: string]: number
+}
 
 const Language: React.FC<IChartProps> = ({
     currentUser
 }) => {
-    const [lang, setLang] = useState([]);
-    // console.log(repos, 'repos')
+    const [lang, setLang] = useState({});
 
     useEffect(() => {
         request({
             url: currentUser.repos_url,
             method: 'get'
-        }).then(res => {
-            const languages = {}
+        }).then((res: any) => {
+            const languages: Languages = {}
             res.map((repo: any) => {
                 const { language } = repo
                 if (language in languages) {
@@ -28,7 +29,6 @@ const Language: React.FC<IChartProps> = ({
                     languages[language] = 1
                 }
             })
-            console.log('languages')
             setLang(languages)
         })
     }, [])
@@ -43,10 +43,12 @@ const Language: React.FC<IChartProps> = ({
         legend: {
             type: 'scroll',
             bottom: 5,
+            textStyle: {
+                color: '#dafef9',
+            }
         },
         series: [
             {
-                name: '姓名',
                 type: 'pie',
                 radius: '55%',
                 center: ['40%', '50%'],
@@ -58,7 +60,7 @@ const Language: React.FC<IChartProps> = ({
                     emphasis: {
                         shadowBlur: 10,
                         shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        shadowColor: '#ccc'
                     }
                 }
             }
