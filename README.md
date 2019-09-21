@@ -16,9 +16,13 @@
 * Repositories List：https://api.github.com/users/${username}/repos
 
 
-## 版块
+## 版块及功能
 
-### 个人信息
+* 个人信息
+* 全屏功能（[react-use](https://github.com/streamich/react-use)）
+* 首页视差（[parallax.js](https://github.com/wagerfield/parallax)）
+
+
 
 
 ## 参考项目

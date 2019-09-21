@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { autobind } from 'core-decorators'
 import { Input, Button, Form } from 'antd';
+import Parallax from 'parallax-js';
 import { connect } from 'dva';
-import { ConnectState } from '@/models/connect';
 import * as Skins from '@/components/Skins';
 import { IProps, IState } from './interface';
 import styles from './index.less';
@@ -44,6 +44,11 @@ class Index extends React.Component<IProps, IState> {
 
   componentDidMount() {
     // this.loopAnimation();
+    // var scene = document.getElementById('scene');
+    // var parallaxInstance = new Parallax(scene, {
+    //   relativeInput: true,
+    //   // clipRelativeInput: true,
+    // });
   }
 
   // loopAnimation() {
@@ -101,6 +106,10 @@ class Index extends React.Component<IProps, IState> {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className={styles.container}>
+        <div id="scene">
+          {/* <div data-depth="0.2">My first Layer!</div>
+          <div data-depth="0.6">My second Layer!</div> */}
+        </div>
         <Background />
         <Form layout="inline" className={styles.form}>
           <Form.Item>
