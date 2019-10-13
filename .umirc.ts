@@ -17,8 +17,9 @@ const config: IConfig = {
         default: 'en-US',
       },
       routes: [
-        { path: '/', component: './Index' },
-        { path: '/dashboard', component: './Dashboard' },
+        { path: '/', component: './src/pages/Index' },
+        { path: '/index', component: './src/pages/Index' },
+        { path: '/dashboard', component: './src/pages/Dashboard' },
       ]
     }],
   ],
