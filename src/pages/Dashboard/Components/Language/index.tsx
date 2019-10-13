@@ -38,7 +38,8 @@ const Language: React.FC<IChartProps> = ({
     const chartOption = {
         tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>{b} : {c} ({d}%)",
+            confine: true
         },
         legend: {
             type: 'scroll',
@@ -47,11 +48,13 @@ const Language: React.FC<IChartProps> = ({
                 color: '#dafef9',
             }
         },
+        color: ['#997300', '#5b9bd5', '#ed7d31', '#70ad47', '#4472c4', '#9e480e', '#636363'],
         series: [
             {
+                name: '语言',
                 type: 'pie',
-                radius: '55%',
-                center: ['40%', '50%'],
+                radius: '50%', // 饼图大小
+                center: ['50%', '50%'],
                 data: Object.keys(lang).map(key => ({
                     value: lang[key],
                     name: key
