@@ -3,8 +3,6 @@ import { IConfig } from 'umi-types';
 // ref: https://umijs.org/config/
 const config: IConfig = {
   treeShaking: true,
-  base: '/rehub-v',
-  publicPath: '/rehub-v/',
   history: 'hash',
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
@@ -18,15 +16,10 @@ const config: IConfig = {
         enable: true,
         default: 'en-US',
       },
-      routes: {
-        exclude: [
-          /models\//,
-          /services\//,
-          /model\.(t|j)sx?$/,
-          /service\.(t|j)sx?$/,
-          /components\//,
-        ],
-      },
+      routes: [
+        { path: '/', component: './Index' },
+        { path: '/dashboard', component: './Dashboard' },
+      ]
     }],
   ],
 }

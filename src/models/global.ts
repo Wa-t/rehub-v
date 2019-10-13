@@ -45,7 +45,7 @@ const GlobalModel: GlobalModelType = {
           ...res,
         },
       });
-      router.push('dashboard');
+      router.push('/dashboard');
     },
   },
 
